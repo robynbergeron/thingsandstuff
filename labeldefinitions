@@ -1,0 +1,49 @@
+Definitions for each label, along with descriptions for what the trigger comments (ready_for_review, etc.) mean.
+Work in progress.
+
+Extras/Core labels:
+
+* backport
+* bug_report: Issues describing bugs in modules. 
+* bugfix_pull_request: 
+* cloud
+* community_review: Pull requests for modules that are currently awaiting review by their maintainers in the Ansible community.
+* core_review: Pull requests for modules that are currently awaiting review by their maintainers on the Ansible Core team.
+* docs_pull_request: Pull requests for documentation 
+* docs_report
+* easyfix
+* feature_idea
+* feature_pull_request
+* in progress
+* needs_info
+* needs_rebase
+* needs_revision
+* networking: Issues and Pull Requests relating to networking-related modules.
+* new_plugin
+* owner_pr
+* P1 - P5
+* pending_action
+* shipit
+* windows: Issues and Pull requests relating to the Windows platform. 
+
+Ansible/ansible labels:
+* backport
+* bug_report
+* bugfix_pull_request
+* cloud
+* docs_pull_request
+* docs_report
+* easyfix
+* feature_idea
+* feature_pull_request
+* in progress
+* needs_to_be_moved: 
+This issue was created in the incorrect location and needs to be recreated in the appropriate repository. 
+* networking: ?? Not related to modules, right? So, better description?
+* new_plugin
+* P1 - P2
+* pending_action
+* plugin
+* windows
+
+Extras PR & Issue trigger comments:
