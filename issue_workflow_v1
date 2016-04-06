@@ -41,7 +41,8 @@ Issue Workflow
     * Apply bug_resolved boilerplate
     * OPEN QUESTION: How to handle if submitter does not believe it was resolved?
       * Possible: Apply needs_info label, ask submitter to verify if it was resolved and say "fixed_for_me" if fixed?, and if no then respond to any other comment from submitter with "info_provided" boilerplate (and follow normal path after that)?
-
+      * More likely: If your issue wasn't resolved, open a new ticket. 
+      
 * If at any time a pull request is referenced in the issue (NOTE: This could be optional / future enhancement, but might help people to be more proactive about testing PRs / closing issues.)
   - If pull request was created or referenced by issue submitter:
     * Apply submitter_PR boilerplate, ping maintainer
