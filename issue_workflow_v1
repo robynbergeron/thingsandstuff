@@ -57,7 +57,7 @@ Issue Workflow
   - Only do this for the first comment (aka: shouldn't happen again, because the label will not be needs_info anymore)
 
 * If docs report or bugs report, and maintainer does not respond within 30 days:
-  - Apply friendly_reminder boilerplate
+  - Apply friendly_reminder boilerplate; ping both maintainer and submitter
   - After next 30 days: reapply friendly_reminder boilerplate
 
 * If docs report, bug report, or feature idea, and maintainer requests needs_info:
@@ -95,6 +95,7 @@ Issue Workflow
 2: If you believe this issue has been or will be resolved by an existing pull request, please indicate with a comment saying bug_resolved; referencing the 
 3: Sometimes life or work can get busy! While we don't need to know all the details, just let us know you're busy for a while in a comment. People understand. (And really: if you're on a vacation, we are super happy for you -- but don't tell us the dates when you'll be out of town. Creepy people on the internet might go to your house and take all your Ansible stickers if they know you're gone.)"
 
+@submitter: Sometimes issues can get into funky states. If you have any updates, please add them in a comment with the comment "info_provided" so we can get this back in gear."
 * needs_info: 
 "@submitter: It looks like the maintainer of this module needs a little bit more information to help you out! Please respond in a comment with the requested information."
 
@@ -138,8 +139,8 @@ If you haven't already done so, please ensure that you have completed as many de
 We encourage all Ansible community members to submit pull requests to satisfy feature requests. Consult the module guidelines (http://docs.ansible.com/ansible/developing_modules.html) for more information."
 
 * bug_resolved:
-"@submitter: It looks like the maintainer of this module believes this issue is resolved."
-NOTE: Need to decide how to handle this case
+"@submitter: It looks like the maintainer of this module believes this issue is resolved. If it isn't, sorry about that! GitHub doesn't provide a way to reopen automatically closed issues, so please open a new issue and reference the closed issue inside it. Copying or modifying your original issue text in the template will help it move along faster."
+
 
 * other_repository:
 "It appears that you are attempting to file an issue for the $modulename module. This module is part of the (core or extras) repository. Unfortunately, we can't move issues across repositories, but your issue is important to us! Please refile your issue here (core or extras link for correct place).
