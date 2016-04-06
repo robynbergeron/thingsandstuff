@@ -54,11 +54,11 @@ Issue Workflow
 * If label = needs_info and submitter has commented since needs_info was applied:
   - Apply "info_provided" boilerplate and ping maintainer
   - Remove needs_info label
-  - OPEN QUESTION: Apply info_provided with *every* additional comment from submitter? Or just once?
+  - Only do this for the first comment (aka: shouldn't happen again, because the label will not be needs_info anymore)
 
 * If docs report or bugs report, and maintainer does not respond within 30 days:
   - Apply friendly_reminder boilerplate
-  - OPEN QUESTION: After 30 days, then? Reapply friendly_reminder boilerplate?
+  - After next 30 days: reapply friendly_reminder boilerplate
 
 * If docs report, bug report, or feature idea, and maintainer requests needs_info:
   - Apply needs_info label
