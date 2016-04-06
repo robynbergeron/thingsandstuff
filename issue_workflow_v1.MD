@@ -1,9 +1,9 @@
-Issue Workflow "Logic"
+Issue Workflow
 
+-- Logic --
 * Assumptions: Anything labeled pending_action will close within two weeks
-* 
 
-
+-- Workflow -- 
 * Is issue also PR?
   - If yes: Do nothing, PR workflow overrules.
   - Otherwise: continue ahead
@@ -25,10 +25,12 @@ Issue Workflow "Logic"
     * Add pending_action label (NOT BOILERPLATE), apply other_repository boilerplate
       - other_repository boilerplate handling: Could be "if running against core, type extras in boilerplate" -- or simply have other_repository_boilerplate_core (and extras) and when running the bot against a repo, ensure to call the correct boilerplate. 
     * Auto-close after two weeks (assumption is that they are either (a) not responsive, (b) opened module in correct repository)
-  - If not a current module:
+  - If not currently a module:
     * Add needs_revision label, apply please_complete boilerplate
-    * If issue is needs_revision for more than 2 weeks, and only 1 comment (original) in issue from submitter: Apply pending_action boilerplate
-    * If issue is pending_action for more than 2 weeks, and only 1 comment (original) in issue from submitter: Close issue, apply closing_non_responsive boilerplate.
+
+* If issue labeled is labeled needs_revision for more than 2 weeks, and only 1 comment (original) in issue from submitter: Apply pending_action boilerplate
+  - Handles "none or wrong issue type" and "not a current module" scenarios
+* If issue is pending_action for more than 2 weeks, and only 1 comment (original) in issue from submitter: Close issue, apply closing_non_responsive boilerplate.
 
 * After maintainer ping / label:
   - If issue is tagged by maintainer as needs_info:
@@ -37,28 +39,29 @@ Issue Workflow "Logic"
     * Ping submitter
   - If issue is tagged by maintainer as bug_resolved:
     * Apply bug_resolved boilerplate
-    * (Note: bug_resolved tag by maintainer at any time regardless of existence of needs_info label should close issue)
     * OPEN QUESTION: How to handle if submitter does not believe it was resolved?
+      * Possible: Apply needs_info label, ask submitter to verify if it was resolved and say "fixed_for_me" if fixed?, and if no then respond to any other comment from submitter with "info_provided" boilerplate (and follow normal path after that)?
         
 * If label = needs_info and submitter has commented since needs_info was applied:
   - Apply "info_provided" boilerplate and ping maintainer
   - Remove needs_info label
+  - OPEN QUESTION: Apply info_provided with *every* additional comment from submitter? Or just once?
 
 * If docs report or bugs report, and maintainer does not respond within 30 days:
-   - Apply friendly_reminder boilerplate
-   - OPEN QUESTION: After 30 days, then? Reapply friendly_reminder boilerplate?
+  - Apply friendly_reminder boilerplate
+  - OPEN QUESTION: After 30 days, then? Reapply friendly_reminder boilerplate?
 
 * If docs report, bug report, or feature idea, and maintainer requests needs_info:
-   - Apply needs_info label
-   - Apply generic needs_info boilerplate, pinging submitter
+  - Apply needs_info label
+  - Apply needs_info boilerplate, pinging submitter
 
 * If docs report, bug report, or feature idea, and 30 days since needs_info label was applied:
-   - Apply pending_action label
-   - Apply pending_action boilerplate
+  - Apply pending_action label
+  - Apply pending_action boilerplate
 
 * If docs_report, bug_report, or feature_idea, and pending_action for more than two weeks:
-   - Close issue
-   - Apply closing_non_responsive boilerplate.
+  - Close issue
+  - Apply closing_non_responsive boilerplate.
 
 *****
 
@@ -73,13 +76,13 @@ Boilerplate Text
 * bug_report
 * docs_report
 * feature_idea
-* cant_find_module
+* bug_resolved
 * other_repository
 
-* friendly_reminder:
+* friendly_reminder
 "@maintainer: Pinging you with a friendly reminder that this bug report exists. We know you're human (unlike Ansibullbot!) - but:
 1: If you're just seeing this for the first time, and it needs more information, please leave a comment saying needs_info and any additional questions you might have for the submitter.
-2: If you believe this issue has been or will be resolved by an existing pull request, please indicate (??)
+2: If you believe this issue has been or will be resolved by an existing pull request, please indicate with a comment saying bug_resolved; referencing the 
 3: Sometimes life or work can get busy! While we don't need to know all the details, just let us know you're busy for a while in a comment. People understand. (And really: if you're on a vacation, we are super happy for you -- but don't tell us the dates when you'll be out of town. Creepy people on the internet might go to your house and take all your Ansible stickers if they know you're gone.)"
 
 * needs_info: 
@@ -94,16 +97,17 @@ Boilerplate Text
 * closing_non_responsive:
 "@submitter: Sorry! We were hoping to hear back from you with more information, but we never did. If you are still having this problem in the future and have additional information, you are welcome to create a new issue."
 
-* please_complete: "@submitter: Greetings! Thanks for taking the time to open this issue. In order to handle your issue effectively, we need a bit more information. Please ensure that you have properly selected ONE issue type, and that you have added the module name, spelled correctly, in the appropriate field."
-  -- OPEN QUESTION: By editing the original issue, or by copying the template into a new comment?
-  -- OPEN QUESTION: Should a response to please_complete with just the module name be enough response to proceed forward?
+* please_complete: 
+"@submitter: Greetings! Thanks for taking the time to open this issue. In order to handle your issue effectively, we need a bit more information. Please ensure that you have properly selected ONE issue type, and that you have added the module name, spelled correctly, in the appropriate field."
+  - OPEN QUESTION: By editing the original issue, or by copying the template into a new comment?
+  - OPEN QUESTION: Should a response to please_complete with just the module name be enough response to proceed forward?
   
 * bug_report:
-"@issuecreator: Thanks for filing this bug report!
+"@issuecreator: Thanks for filing this bug report! 
 
 If you haven't already done so, please ensure that you have completed as many details as possible regarding your issue in the provided template. This will help the maintainer determine the issue more effectively. If the maintainer is unable to troubleshoot or identify your issue with the provided information, they an request for you to do so in order to prodeed at their discretion.
 
-Please note that if you have a question about how to use this module with Ansible, it is probably something you should ask on the ansible-project mailing list, rather than submitting a bug report.
+Please note that if you have a question about how to use this module with Ansible, it is probably something you should ask on the ansible-project mailing list, rather than submitting a bug report. For more details, please see $somelink."
 
 @maintainer: Thanks in advance for taking a look at this bug report and for your ongoing work in maintaining this module. If you are unable to troubleshoot this issue with the information provided, please leave a "needs_info" comment along with any further comments you wish, and we will change the state of the issue. If a PR is created to fix this issue, we would appreciate it if your PR linked to this issue as "fixes #issuenumber". Alternately, if the issue is now or becomes resolved, please leave a comment stating "bug_resolved" and we will close this issue."
 
@@ -123,13 +127,9 @@ If you haven't already done so, please ensure that you have completed as many de
 
 We encourage all Ansible community members to submit pull requests to satisfy feature requests. Consult the module guidelines (http://docs.ansible.com/ansible/developing_modules.html) for more information."
 
-* other_repository:
-"It appears that you are attempting to file an issue for the $modulename module. This module is part of the (core or extras) repository. Unfortunately, we can't move issues across repositories, but your issue is important to us! Please refile your issue here (core or extras link for correct place).
-
-Because this issue needs to be recreated in the appropriate repository, we will be auto-closing this issue in (2 weeks, or whatever the pending_action time period is)."
-
 * bug_resolved:
-"@submitter: It looks like the maintainer of this module believes this issue is resolved." 
+"@submitter: It looks like the maintainer of this module believes this issue is resolved."
+NOTE: Need to decide how to handle this case
 
 * other_repository:
 "It appears that you are attempting to file an issue for the $modulename module. This module is part of the (core or extras) repository. Unfortunately, we can't move issues across repositories, but your issue is important to us! Please refile your issue here (core or extras link for correct place).
