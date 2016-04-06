@@ -1,3 +1,7 @@
+Gathering information on which stats to track and share publicly on a monthly basis (or more frequently).
+
+Previous suggestions shared in https://github.com/ansible/community/issues/38 --
+
 * Number of PRs opened vs. closed
 * Number of issues opened vs. closed
 * Number of modules maintained by core team vs. individual maintainers
