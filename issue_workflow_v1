@@ -41,7 +41,15 @@ Issue Workflow
     * Apply bug_resolved boilerplate
     * OPEN QUESTION: How to handle if submitter does not believe it was resolved?
       * Possible: Apply needs_info label, ask submitter to verify if it was resolved and say "fixed_for_me" if fixed?, and if no then respond to any other comment from submitter with "info_provided" boilerplate (and follow normal path after that)?
-        
+
+* If at any time a pull request is referenced in the issue (NOTE: This could be optional / future enhancement, but might help people to be more proactive about testing PRs / closing issues.)
+  - If pull request was created or referenced by issue submitter:
+    * Apply submitter_PR boilerplate, ping maintainer
+  - If pull request was created or referenced by a maintainer:
+    * Apply maintainer_PR boilerplate, ping submitter
+  - If pull request was referenced by anyone else:
+    * Apply other_PR boilerplate, ping submitter and maintainer
+
 * If label = needs_info and submitter has commented since needs_info was applied:
   - Apply "info_provided" boilerplate and ping maintainer
   - Remove needs_info label
@@ -76,6 +84,9 @@ Issue Workflow
 * feature_idea
 * bug_resolved
 * other_repository
+* submitter_PR
+* maintainer_PR
+* other_PR
 
 * friendly_reminder
 "@maintainer: Pinging you with a friendly reminder that this bug report exists. We know you're human (unlike Ansibullbot!) - but:
@@ -133,3 +144,14 @@ NOTE: Need to decide how to handle this case
 "It appears that you are attempting to file an issue for the $modulename module. This module is part of the (core or extras) repository. Unfortunately, we can't move issues across repositories, but your issue is important to us! Please refile your issue here (core or extras link for correct place).
 
 Because this issue needs to be recreated in the appropriate repository, we will be auto-closing this issue in (2 weeks, or whatever the pending_action time period is)."
+
+* submitter_PR:
+"@maintainer: It looks like @submitter has created or found a pull request which may solve this issue. Please take a look at the PR referenced above."
+
+* maintainer_PR:
+"@submitter: It looks like the maintainer(s), @maintainer (full list if more than one!), are working on a pull request which may resolve your issue. Please take a look at the PR referenced above, though you should keep in mind that it may still be a work in progress.
+
+@maintainer: If you believe this PR is ready for testing, please leave a comment indicating that is is ready, and include the word needs_info in the comment. 
+
+* other_PR:
+"@submitter and @maintainer: It looks like @(creator of PR) has created a pull request related to this issue. Please take a look at the above referenced PR."
