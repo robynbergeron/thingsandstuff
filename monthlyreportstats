@@ -1,0 +1,63 @@
+* Number of PRs opened vs. closed
+* Number of issues opened vs. closed
+* Number of modules maintained by core team vs. individual maintainers
+
+
+* Elapsed time be ticket raised and triaged
+* Number of modules with tests (I'm working on this)
+* Number of modules and modules-extra
+
+* Total number of contributors
+* Number of plugins
+* Percent of code submitted by non employees
+
+* Stars/Forks over time
+
+OPEN QUESTIONS:
+* "contributors" = PRs only? Track issue contributors separately?
+* For tracking "total number of new modules added this month" -- Do we need to worry about "it got shipped" (aka in a new release) vs. "it got merged"?
+
+DRAFT OF LIST:
+Basic Statistics, Monthly:
+
+Ansible Galaxy:
+* Number of galaxy roles (total, new this month)
+* Number of organizations with roles in Galaxy (new, this month)
+
+For ansible + ansible-modules-core + ansible-modules-extras:
+* Total # of contributors (unique across all three), new contributors added this month
+
+For each of: ansible, ansible-modules-core, ansible-modules-extras:
+* Total stars, stars added this month
+* Total forks, forks added this month
+* Total # of individual contributors, new contributors this month (unique to each repo)
+
+For issues in ansible, ansible-modules-core, ansible-modules extras:
+* Total number of open issues, closed issues at end of each month
+* Total number of issues created in that month
+* Total number of issues closed in that month
+* Number of issues in needs_info
+* Number of issues with more than 30 days since maintainer response was requests
+* Number of issues with more than 60 days since maintainer response was requested
+
+For PRs in ansible, ansible-modules-core, ansible-modules-extras:
+* Total number of open pull requests, closed pull requests at end of each month
+* Total number of pull requests created in that month
+* Total number of pull requests closed in that month
+* Modules:
+  * Total number of modules; new modules added (merged) this month
+  * Total number of outstanding unmerged new module pull requests; new unmerged module pull requests created this month
+
+For PRs in ansible-modules-core, ansible-modules: Pull Request Efficiency
+Closed / Merged Pull Requests:
+  * Average time for all pull requests from creation to triage (do we really need this now with ansibot?)
+  * Average time for all pull requests from creation to merged or closed without merge
+  * Average time for all pull requests after (May 1?) from creation to merged or closed without merge
+  * Average time for pull requests created Between Jan. 1. 2016 & April 30 from creation to merged / closed without merge
+  * Average time for pull requests created on or before Dec. 31 2015 from creation to merged / closed without merge
+
+Open / Unmerged Pull Requests:
+  * Average time for all currently open/unmerged pull requests from creation to end of report month
+  * Average time for pull requests after (May 1?) from creation to end of report month
+  * Average time for pull requests created Between Jan. 1. 2016 & April 30 from creation to end of report month
+  * Average time for pull requests created on or before Dec. 31 2015 from creationto end of report month
