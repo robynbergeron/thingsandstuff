@@ -43,6 +43,7 @@ For issues in ansible, ansible-modules-core, ansible-modules extras:
 * Number of issues in needs_info
 * Number of issues with more than 30 days since maintainer response was requests
 * Number of issues with more than 60 days since maintainer response was requested
+* All the above for things maintained by core team vs. community maintainers
 
 For PRs in ansible, ansible-modules-core, ansible-modules-extras:
 * Total number of open pull requests, closed pull requests at end of each month
@@ -51,6 +52,7 @@ For PRs in ansible, ansible-modules-core, ansible-modules-extras:
 * Modules:
   * Total number of modules; new modules added (merged) this month
   * Total number of outstanding unmerged new module pull requests; new unmerged module pull requests created this month
+  * All the above for things maintained by core team vs. community maintainers
 
 For PRs in ansible-modules-core, ansible-modules: Pull Request Efficiency
 Closed / Merged Pull Requests:
