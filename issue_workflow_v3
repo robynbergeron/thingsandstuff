@@ -1,0 +1,208 @@
+Issue Workflow
+
+-- Assumptions --
+  * Triagebot should be able to determine if module is in either repository, and redirect to appropriate repository (depending on what repository it is running against, I guess?) 
+
+-- Logic --
+Goal of this logic is mostly to encourage a dialogue between submitter and maintainer via friendly reminders. 
+
+IF:
+* Is an issue (not a PR)
+* Issue_type is properly set for correct repository
+* Module name is properly referenced and issue is in correct repository
+
+THEN: Notify maintainer. Add in_progress label. Apply (docs)(bug)(feature)boilerplate.
+
+NEXT:
+  IF: 
+    * Maintainer does not respond within 2 weeks: apply maintainer_friendly_reminder
+    
+  ELSE:
+    * If no comments from submitter or maintainer in past two weeks: apply periodic_reminder. Keep doing until end of time / resolution.
+  
+-- Workflow -- 
+* Is issue also PR?
+  - If yes: Do nothing, PR workflow overrules.
+  - Otherwise: continue ahead
+
+* Is issue type properly set?
+  - If anything other than bug report, feature idea, or docs report,
+    * Add needs_revision label
+    * Apply please_complete boilerplate
+  - If issue type is properly set to bug report, feature idea, or docs report, then: next
+
+* Does issue reference a valid module in the correct repository?
+  - If yes, then:
+    * Add bug_report label, apply bug_report boilerplate, pinging maintainer; apply networking/windows/cloud labels as appropriate
+      OR
+    * Add docs_report label, apply docs_report boilerplate, pinging maintainer; apply networking/windows/cloud labels as appropriate
+      OR
+    * Add feature_idea label, apply feature_idea label, pinging maintainer; apply networking/windows/cloud labels as appropriate
+  - If valid module, wrong repository:
+    * Add pending_action label (NOT BOILERPLATE), apply other_repository_(extras)(core) boilerplate
+    * Auto-close after two weeks (assumption is that they are either (a) not responsive, (b) opened module in correct repository)
+  - If not currently a module:
+    * Add needs_revision label, apply please_complete boilerplate
+
+* If issue labeled is labeled needs_revision for more than 2 weeks, and only 1 comment (original) in issue from submitter: Apply pending_action boilerplate
+  - Handles "none or wrong issue type" and "not a current module" scenarios
+* If issue is pending_action for more than 2 weeks, and only 1 comment (original) in issue from submitter: Close issue, apply closing_non_responsive boilerplate.
+* If issue is updated with module name, then proceed with above steps for "issue references valid module in correct repository."
+
+* After maintainer/submitter ping with bug_report, docs_report, or feature_idea label:
+  
+  - If: 2 weeks since original maintainer/submitter ping and no response from maintainer: apply friendly_maintainer_reminder boilerplate (one time only)
+  
+ELSE:
+  - If: 2 weeks since maintainer or submitter comment: apply periodic_reminder
+  
+THEN:
+  - If notabug is left as comment by maintainer: apply notabug boilerplate, close issue.
+  - If wontfix is left as comment: apply wontfix boilerplate, close issue.
+  - If bug_resolved is left as comment by submitter or maintainer: apply bug_resolved boilerplate, close issue.
+  - If resolved_by_PR is left as comment by submitter or maintainer: apply resolved_by_pr boilerplate, close issue.
+  
+* If at any time a pull request is referenced in the issue (NOTE: This could be optional / future enhancement, but might help people to be more proactive about testing PRs / closing issues.)
+  - If pull request was referenced by issue submitter:
+    * Apply submitter_PR boilerplate, ping maintainer
+  - If pull request was referenced by a maintainer:
+    * Apply maintainer_PR boilerplate, ping submitter
+  - If pull request was referenced by anyone else:
+    * Apply other_PR boilerplate, ping submitter and maintainer
+  OR:
+    - If all that logic is too hard:
+    - If a pull request was referenced by anyone: apply pull_request_created boilerplate
+
+
+
+-- Boilerplate Text --
+
+* friendly_maintainer_reminder
+* periodic_reminder
+* pending_action
+* closing_non_responsive
+* please_complete
+* bug_report
+* docs_report
+* feature_idea
+* bug_resolved
+* notabug
+* wontfix
+* resolved_by_PR
+* other_repository_core
+* other_repository_extras
+* submitter_PR
+* maintainer_PR
+* other_PR
+
+* friendly_maintainer_reminder
+"@maintainer: Pinging you with a friendly reminder that this bug report exists. We know you're human (unlike Ansibullbot!) - but:
+1: If you're just seeing this for the first time, and it needs more information, please let the submitter know (using the @ sign with their ID) and any additional questions you might have for the submitter.
+2: If you believe this issue has been or will be resolved by an existing pull request, please indicate with a comment saying resolved_by_pr; referencing the 
+3: Sometimes life or work can get busy! While we don't need to know all the details, just let us know you're busy for a while in a comment. People understand. (And really: if you're on a vacation, we are super happy for you -- but don't tell us the dates when you'll be out of town. Creepy people on the internet might go to your house and take all your Ansible stickers if they know you're gone.)"
+
+@submitter: If you have any updates, please add them in a comment.
+
+* periodic_reminder:
+@maintainer & @submitter: Just giving a friendly reminder that this issue is still open.
+If either of you believe this bug is now resolved, please leave a comment stating bug_resolved and we will close the issue. If you know of a PR that has resolved or will resolve this bug, please leave a comment saying resolved_by_PR, and reference the PR # in the comments.
+If this bug is now believed to not be a bug, please leave a comment stating notabug. 
+
+@maintainer: If you require more information to make progress on this bug, please let the submitter know by pinging their ID in a comment. If this is a bug you cannot or will not resolve, please leave a comment stating wontfix, along with any reasons why, and we will close this issue. 
+
+We encourage maintainers and submitters (as well as anyone affected) to continue to leave updates or provide additional information or guidance in the comments -- this can help the issue to move towards resolution. 
+
+* pending_action:
+"@submitter: Greetings! We previously asked for you to provide more information regarding your issue. Without your input, we can't notify the maintainer, or make progress on your issue. Please provide the information requested within the next two weeks, or we will close the issue for non-responsiveness."
+
+* closing_non_responsive:
+"@submitter: Sorry! We were hoping to hear back from you with more information, but we never did. If you are still having this problem in the future and have additional information, you are welcome to create a new issue."
+
+* please_complete: 
+"@submitter: Greetings! Thanks for taking the time to open this issue. In order to handle your issue effectively, we need a bit more information. Please ensure that you have properly selected ONE issue type, and that you have added the module name, spelled correctly, in the appropriate field."
+  - OPEN QUESTION: By editing the original issue, or by copying the template into a new comment?
+  - OPEN QUESTION: Should a response to please_complete with just the module name be enough response to proceed forward?
+  
+* bug_report:
+"@submitter: Thanks for filing this bug report! 
+
+If you haven't already done so, please ensure that you have completed as many details as possible regarding your issue in the provided template. This will help the maintainer determine the issue more effectively. If the maintainer does need further information, please respond to their request, so that you can help them to help you! 
+
+Please note that if you have a question about how to use this module with Ansible, that's probably something you should ask on the ansible-project mailing list, rather than submitting a bug report. For more details, please see http://docs.ansible.com/ansible/community.html#i-ve-got-a-question ."
+
+@maintainer: Thanks in advance for taking a look at this bug report and for your ongoing work in maintaining this module. If you are unable to troubleshoot this issue with the information provided, please ping the submitter of the issue in a comment to let them know. If this is a bug that you can't or won't fix, please leave a comment including the word wontfix, along with any reasons why.
+
+For both @submitter & @maintainer: Making progress in resolving issues for modules depends upon your interaction! Please be sure to respond to requests or additional information as needed, as well as let us know if the issue can be closed.
+* If, after further investigation, either of you belive this is not a bug, please leave a comment stating notabug, along with any additional information as to why it is not, and we will close this issue.
+* When either of you believe this issue is resolved, please leave a comment stating bug_resolved, and we will close this issue. 
+* If you believe this issue has been resolved by a pull request, please leave a comment stating resolved_by_pr, and reference the pull request # if possible. 
+
+For anyone else also experiencing this issue: Please leave a comment in this issue with the words same_issue in the comment, so we can determine if this issue is affecting a number of people. Any additional details you can provide, such as your environment, steps to reproduce, or workarounds you have found, can help out with resolving this issue.
+
+* docs_report:
+"@submitter: Thanks for submitting this documentation report!
+
+If you haven't already done so, please ensure that you have completed as many details as possible regarding your issue in the provided template. This will help the maintainer determine the issue more effectively. If the maintainer does need further information, please respond to their request, so that you can help them to help you! 
+
+Please note that if you have a question about how to use this module with Ansible, that's probably something you should ask on the ansible-project mailing list, rather than submitting a bug report. For more details, please see http://docs.ansible.com/ansible/community.html#i-ve-got-a-question ."
+
+@maintainer: Thanks in advance for taking a look at this bug report and for your ongoing work in maintaining this module. If you are unable to troubleshoot this issue with the information provided, please ping the submitter of the issue in a comment to let them know. If this is a bug that you can't or won't fix, please leave a comment including the word wontfix, along with any reasons why.
+
+For both @submitter & @maintainer: Making progress in resolving issues for modules depends upon your interaction! Please be sure to respond to requests or additional information as needed, as well as let us know if the issue can be closed.
+* If, after further investigation, either of you belive this is not a bug, please leave a comment stating notabug, along with any additional information as to why it is not, and we will close this issue.
+* When either of you believe this issue is resolved, please leave a comment stating bug_resolved, and we will close this issue. 
+* If you believe this issue has been resolved by a pull request, please leave a comment stating resolved_by_pr, and reference the pull request # if possible. 
+
+For anyone else also experiencing this issue: Please leave a comment in this issue with the words same_issue in the comment, so we can determine if this issue is affecting a number of people. Any additional details you can provide, such as your environment, steps to reproduce, or workarounds you have found, can help out with resolving this issue.
+
+* feature_idea:
+"@issuecreator: Thanks for creating an issue for this feature idea!
+
+If you haven't already done so, please ensure that you have completed as many details as possible regarding your feature idea in the provided template. If the maintainer is unable to determine the scope of your request or has further questions, they may request for you to provide additional information.
+
+@maintainer: Pinging you to bring this feature request to your attention. Please note that you are under no particular obligation to add this feature.
+
+For both @submitter & @maintainer: Making progress in resolving issues for modules depends upon your interaction! Please be sure to respond to requests or additional information as needed, as well as let us know if the issue can be closed.
+
+For both @submitter & @maintainer:
+* If, after further investigation, either of you belive this is not an appropriate feature idea, or otherwise feel that this issue can be closed, please leave a comment stating bug_resolved, and we will close this issue. 
+* If you believe this feature idea has been resolved by a pull request, please leave a comment stating resolved_by_pr, and reference the pull request # if possible.
+
+To Everyone: We encourage all Ansible community members to submit pull requests to satisfy feature requests. Consult the module guidelines (http://docs.ansible.com/ansible/developing_modules.html) for more information."
+
+* bug_resolved:
+"@submitter & @maintainer: It looks like this issue has been resolved. If it isn't, sorry about that! GitHub doesn't provide a way to reopen automatically closed issues, so please open a new issue and reference the closed issue inside it. Copying or modifying your original issue text in the template will help it move along faster."
+
+* notabug:
+"@submitter & @maintainer: It looks like this wasnt a bug after all, and we are closing this issue. If it is still believed to be a bug, sorry about that! GitHub doesn't provide a way to reopen automatically closed issues, so please open a new issue and reference the closed issue inside it."
+
+* wontfix:
+"@submitter: It looks like the maintainer, @, is unable to fix this issue. If this is an ongoing problem, or you believe this was done in error, sorry about that! GitHub doesn't provide a way to reopen automatically closed issues, so please open a new issue and reference the closed issue inside it."
+
+* other_repository_extras:
+"It appears that you are attempting to file an issue for the $modulename module. This module is part of the ansible-modules-extras repository. Unfortunately, we can't move issues across repositories, but your issue is important to us! Please refile your issue here: https://github.com/ansible/ansible-modules-extras/issues/new
+
+Because this issue needs to be recreated in the appropriate repository, we will be auto-closing this issue in 2 weeks."
+
+* other_repository_core:
+"It appears that you are attempting to file an issue for the $modulename module. This module is part of the ansible-modules-core repository. Unfortunately, we can't move issues across repositories, but your issue is important to us! Please refile your issue here: https://github.com/ansible/ansible-modules-core/issues/new
+
+Because this issue needs to be recreated in the appropriate repository, we will be auto-closing this issue in 2 weeks."
+
+Pull request boilerplates (easy way, or harder way):
+
+Easy way:
+* pull_request_created: 
+"@maintainer & @ submitter: It looks like someone has created a pull request and associated it with this issue. Please take a look to see if the pull request resolves this issue."
+
+Hard Way:
+* submitter_PR:
+"@maintainer: It looks like @submitter has created or found a pull request which may solve this issue. Please take a look at the PR referenced above."
+
+* maintainer_PR:
+"@submitter: It looks like the maintainer(s), @maintainer (full list if more than one!), are working on a pull request which may resolve your issue. Please take a look at the PR referenced above, though you should keep in mind that it may still be a work in progress.
+
+@maintainer: If you believe this PR is ready for testing, please leave a comment indicating that is is ready, and include the word needs_info in the comment. 
+
+* other_PR:
+"@submitter and @maintainer: It looks like @(creator of PR) has created a pull request related to this issue. Please take a look at the above referenced PR."
