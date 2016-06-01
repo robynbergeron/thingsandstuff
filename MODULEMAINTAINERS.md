@@ -1,4 +1,4 @@
-Thank you for being a maintainer of one of the modules in ansible-modules-extras! This guide pr:ovides module maintainers an overview of their responsibilities, resources for additional information, and links to helpful tools.
+Thank you for being a maintainer of one of the modules in ansible-modules-extras! This guide provides module maintainers an overview of their responsibilities, resources for additional information, and links to helpful tools.
 
 In addition to the information below, module maintainers should be familiar with:
 * Documentation on module development (http://docs.ansible.com/ansible/developing_modules.html)
