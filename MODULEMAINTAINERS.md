@@ -6,7 +6,7 @@ In addition to the information below, module maintainers should be familiar with
 
 ***
 
-Maintainer Responsibilities
+''Maintainer Responsibilities''
 
 When you contribute a new module to the ansible-modules-extras repository, you become the maintainer for that module once it has been merged. Maintainership empowers you with the authority to accept, reject, or request revisions to pull requests on your module -- but as they say, "with great power comes great responsibility."
 
