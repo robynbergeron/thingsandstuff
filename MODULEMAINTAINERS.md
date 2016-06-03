@@ -18,13 +18,6 @@ The Ansible community hopes that you will find that maintaining your module is a
 
 ***
 
-# Changing Maintainership
-
-* Many modules have more than one maintainer (more stuff to go here).
-* How to step down from being a maintainer. (See "Extras maintainers list" section in this document)
-
-***
-
 # Pull Requests and Issues
 
 ## Pull Requests
@@ -46,7 +39,11 @@ At this time, we do not have an automated process by which Issues are handled. I
 The full list of maintainers for modules in ansible-modules-extras is located here:
 https://github.com/ansible/ansibullbot/blob/master/MAINTAINERS-EXTRAS.txt
 
-If you'd like to propose an additional maintainer for your module, please (?? submit a PR to that file?)
+## Changing Maintainership
+
+Communities change over time, and no one maintains a module forever. If you'd like to propose an additional maintainer for your module, please submit a PR to the maintainers file with the Github ID of the new maintainer.
+
+If you'd like to step down as a maintainer, please submit a PR to the maintainers file removing your Github ID from the module in question. If that would leave the module with no maintainers, put "ansible" as the maintainer.  This will indicate that the module is temporarily without a maintainer, and the Ansible community team will search for a new maintainer.
 
 ***
 
