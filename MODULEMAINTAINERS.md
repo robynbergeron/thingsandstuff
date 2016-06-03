@@ -23,13 +23,13 @@ The Ansible community hopes that you will find that maintaining your module is a
 
 ## Pull Requests
 
-Module pull requests are located in the ansible-modules-extras repository (link).
+Module pull requests are located in the [ansible-modules-extras repository](https://github.com/ansible/ansible-modules-extras/pulls).
 
 Because of the high volume of pull requests, notification of PRs to specific modules are routed by an automated bot to the appropriate maintainer for handling. It is recommended that you set an appropriate notification process to receive notifications which mention your GitHub ID.
 
 ## Issues
 
-Issues for modules, including bug reports, documentation bug reports, and feature requests, are tracked in the ansible-modules-extras repository. (link)
+Issues for modules, including bug reports, documentation bug reports, and feature requests, are tracked in the [ansible-modules-extras repository](https://github.com/ansible/ansible-modules-extras/issues).
 
 At this time, we do not have an automated process by which Issues are handled. If you are a maintainer of a specific module, it is recommended that you periodically search module issues for issues which mention your module's name (or some varition on that name), as well as setting an appropriate notification process for receiving notification of mentions of your GitHub ID.
 
