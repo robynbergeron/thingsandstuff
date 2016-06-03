@@ -6,7 +6,7 @@ In addition to the information below, module maintainers should be familiar with
 
 ***
 
-Maintainer Responsibilities
+# Maintainer Responsibilities
 
 When you contribute a new module to the ansible-modules-extras repository, you become the maintainer for that module once it has been merged. Maintainership empowers you with the authority to accept, reject, or request revisions to pull requests on your module -- but as they say, "with great power comes great responsibility."
 
@@ -16,22 +16,22 @@ The Ansible community hopes that you will find that maintaining your module is a
 
 ***
 
-Changing Maintainership
+# Changing Maintainership
 
 * Many modules have more than one maintainer (more stuff to go here).
-* How to step down from being a maintainer.
+* How to step down from being a maintainer. (See "Extras maintainers list" section in this document)
 
 ***
 
-Pull Requests and Issues
+# Pull Requests and Issues
 
-Pull Requests:
+## Pull Requests
 
 Module pull requests are located in the ansible-modules-extras repository (link).
 
 Because of the high volume of pull requests, notification of PRs to specific modules are routed by an automated bot to the appropriate maintainer for handling. It is recommended that you set an appropriate notification process to receive notifications which mention your GitHub ID.
 
-Issues:
+## Issues
 
 Issues for modules, including bug reports, documentation bug reports, and feature requests, are tracked in the ansible-modules-extras repository. (link)
 
@@ -39,7 +39,7 @@ At this time, we do not have an automated process by which Issues are handled. I
 
 ***
 
-Extras maintainers list:
+# Extras maintainers list
 
 The full list of maintainers for modules in ansible-modules-extras is located here:
 https://github.com/ansible/ansibullbot/blob/master/MAINTAINERS-EXTRAS.txt
@@ -48,13 +48,13 @@ If you'd like to propose an additional maintainer for your module, please (?? su
 
 ***
 
-Tools and other Resources
+# Tools and other Resources
 
-Useful tools
+## Useful tools
 * https://ansible.sivel.net/pr/byfile.html
 * https://github.com/sivel/ansible-testing
 
-Other Resources
+## Other Resources
 
 * Module maintainer list: https://github.com/ansible/ansibullbot/blob/master/MAINTAINERS-EXTRAS.txt
 * Ansibullbot: https://github.com/ansible/ansibullbot
