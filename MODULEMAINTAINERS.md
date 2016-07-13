@@ -5,7 +5,7 @@ Thank you for being a maintainer of one of the modules in ansible-modules-extras
 In addition to the information below, module maintainers should be familiar with:
 * General Ansible community development practices (http://docs.ansible.com/ansible/community.html)
 * Documentation on module development (http://docs.ansible.com/ansible/developing_modules.html)
-* Module Contribution Guidelines: (https://github.com/alikins/ansible-modules-extras/commit/c87795da5b0c95c67fea1608a5a2a4ec54cb3905)
+* Module Contribution Guidelines: (https://github.com/alikins/ansible-modules-extras/commit/c87795da5b0c95c67fea1608a5a2a4ec54cb3905) (NOTE: need to decide if we want to merge these notes from alikins into contributing.md, or add them here. I feel like contributing.md is probably better -- since it covers guidelines that folks who aren't maintainers also need to understand just for doing things like submitting PRs to modules, but open to debate on that.)
 * Any namespace-specific module guidelines (identified as GUIDELINES.md in the appropriate file tree).
 
 ***
